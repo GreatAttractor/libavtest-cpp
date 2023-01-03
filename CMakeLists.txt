@@ -6,6 +6,8 @@ include(FindPkgConfig)
 
 add_executable(libavtest WIN32
     src/main.cpp
+    src/video_writer.h
+    src/video_writer.cpp
 )
 
 set_property(TARGET libavtest PROPERTY CXX_STANDARD 17)

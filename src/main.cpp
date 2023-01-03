@@ -12,6 +12,8 @@ TODO: why the first few frames have terrible quality even with v. high bitrate?
 
 */
 
+#include "video_writer.h"
+
 #include <array>
 #include <cmath>
 #include <iostream>
