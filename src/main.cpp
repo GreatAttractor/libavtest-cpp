@@ -133,10 +133,6 @@ int main(int argc, char* argv[])
     {
         throw std::runtime_error("avcodec_find_encoder_by_name failed");
     }
-    if (!(codec->capabilities & AV_CODEC_CAP_DR1))
-    {
-        throw std::runtime_error("codec is missing AV_CODEC_CAP_DR1");
-    }
     std::unique_ptr<AVCodecContext, Deleters::avcodeccontext> codec_ctx{avcodec_alloc_context3(codec)};
     codec_ctx->time_base = stream->time_base;
     codec_ctx->pix_fmt = AV_PIX_FMT_YUV420P;
