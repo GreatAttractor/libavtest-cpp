@@ -1,6 +1,6 @@
 Creating an MP4/H264 video using `libav`.
 
-## Prerequisites:
+## Prerequisites
 
 ### Fedora 37
 

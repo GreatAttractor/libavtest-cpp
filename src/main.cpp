@@ -237,9 +237,18 @@ int main(int argc, char* argv[])
         if (EncodingState::SendFrameToEncoder == state)
         {
             fill_frame_rgb(num_encoded_frames, frame_data_rgb.get(), aligned_width, aligned_height);
-            if (sws_scale_frame(sws_ctx.get(), avframe_yuv.get(), avframe_rgb.get()) < 0)
+
+            if (0 > sws_scale(
+                sws_ctx.get(),
+                avframe_rgb->data,
+                avframe_rgb->linesize,
+                0,
+                avframe_rgb->height,
+                avframe_yuv->data,
+                avframe_yuv->linesize
+            ))
             {
-                throw std::runtime_error("sws_scale_frame failed");
+                throw std::runtime_error("sws_scale failed");
             }
 
             avframe_yuv->pts = num_encoded_frames * static_cast<std::int64_t>(av_q2d(av_div_q(AVRational{1, FRAMERATE}, stream->time_base)));
