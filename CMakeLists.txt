@@ -13,6 +13,8 @@ add_executable(libavtest WIN32
 set_property(TARGET libavtest PROPERTY CXX_STANDARD 17)
 set_property(TARGET libavtest PROPERTY CXX_STANDARD_REQUIRED ON)
 
+target_compile_options(libavtest PRIVATE -Wall -Wextra -Wpedantic -Wold-style-cast -Wno-parentheses)
+
 pkg_check_modules(LIBAVFORMAT libavformat REQUIRED)
 target_include_directories(libavtest PRIVATE ${LIBAVFORMAT_INCLUDE_DIRS})
 target_link_libraries(libavtest PRIVATE ${LIBAVFORMAT_LIBRARIES})
