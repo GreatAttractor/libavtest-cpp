@@ -16,8 +16,8 @@ public:
     };
 
     /// Returns `std::nullopt` on error.
-    static std::optional<VideoWriter> Create(
-        std::filesystem::path& output_file,
+    static std::optional<VideoWriter> create(
+        const std::filesystem::path& output_file,
         unsigned frame_width,
         unsigned frame_height,
         unsigned frame_rate,
@@ -31,16 +31,18 @@ public:
     VideoWriter& operator=(const VideoWriter&) = default;
     VideoWriter& operator=(VideoWriter&&) = default;
 
-    /// Calls `Finalize`.
+    /// Calls `finalize`.
     ~VideoWriter();
 
     /// Encodes and writes a frame; returns `false` on error.
-    bool AddFrame(std::uint8_t* data, std::ptrdiff_t* line_stride);
+    bool add_frame(const std::uint8_t* frame_contents, std::ptrdiff_t line_stride);
 
-    bool Finalize();
+    bool finalize();
 
 private:
     VideoWriter(std::unique_ptr<VideoWriterData> data);
+
+    bool write_out_encoded_packets();
 
     std::unique_ptr<VideoWriterData> _data;
 };
