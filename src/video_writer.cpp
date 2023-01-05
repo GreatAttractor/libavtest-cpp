@@ -8,7 +8,6 @@ extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
 #include <libavutil/log.h>
-#include <libavutil/pixdesc.h> //TODO: needed?
 #include <libswscale/swscale.h>
 }
 #include <string>
